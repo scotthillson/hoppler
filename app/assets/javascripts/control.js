@@ -30,11 +30,6 @@ var times = function(){
 var update = function(){
   var date = new Date();
   console.log('update ' + date.toString('hhmmss'));
-  $.ajax('images.php',{
-    success:function(data){
-      images=jQuery.parseJSON(data);times();
-    }
-  });
 }
 var cycle = function(){
   setInterval(function(){
