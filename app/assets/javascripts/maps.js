@@ -1,3 +1,4 @@
+var initialize_maps = function(){
 newOverlay.prototype = new google.maps.OverlayView();
 var new_overlay_from_bounds = function(swlat,swlng,nelat,nelng){
   var swBound = new google.maps.LatLng(swlat,swlng);
@@ -46,4 +47,5 @@ newOverlay.prototype.draw = function(){
   div.style.top = ne.y + 'px';
   div.style.width = (ne.x - sw.x) + 'px';
   div.style.height = (sw.y - ne.y) + 'px';
+}
 }
