@@ -1,4 +1,4 @@
-var json_ajax = function(params,rest,type,url,callback,objects){
+var ajax = function(params,rest,type,url,callback,objects){
   $.ajax({
     type: rest,
     dataType: type,

@@ -1,6 +1,4 @@
 var temps = new Array();
-var tempDump;
-var temp;
 var temperature = function(){
   $('.temperature').toggle();
 }
@@ -12,7 +10,7 @@ var colors = function(temp){
   var rgb = r+','+g+','+b;
   $('.'+temp).css('background-color','rgb('+rgb+')').attr('title',temp);
 }
-var points = function(){
+var get_temps_success = function(data){
   var temp_class;
   var bounds;
   var temp;
@@ -21,8 +19,8 @@ var points = function(){
   var arr;
   var sw;
   var ne;
-  for( h = 0 ; h < tempDump.length ; h++ ){
-    arr = tempDump[h].split(' ')
+  for( h = 0 ; h < temps.length ; h++ ){
+    arr = data[h].split(' ')
     lat = parseFloat(arr[0]);
     lng = parseFloat(arr[1]);
     temp = arr[2];
@@ -38,12 +36,5 @@ var points = function(){
   var min = temps[0];
 }
 var get_temps = function(map){
-  $.ajax('temps.php',{success:function(data){
-        tempDump=jQuery.parseJSON(data);
-        points();
-    },
-    error:function(){
-      console.log('temperature error');
-    }}
-  );
+  ajax('','GET','json','/temps',get_temps_success);
 }
