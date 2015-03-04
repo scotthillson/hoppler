@@ -4,9 +4,9 @@ class Image < ActiveRecord::Base
     if !tower || !image
       return false
     end
-    if !where(image: image)
+    if where(image: image).count < 1
       i = new
-      i.tower_id = towe.id
+      i.tower_id = tower.id
       i.image = image
       i.time = time
       i.save

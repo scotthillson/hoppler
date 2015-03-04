@@ -1,7 +1,9 @@
 var temps = new Array();
+
 var temperature = function(){
   $('.temperature').toggle();
 }
+
 var colors = function(temp){
   temp = temp.split(' ')[1];
   var r = red(temp);
@@ -10,6 +12,7 @@ var colors = function(temp){
   var rgb = r+','+g+','+b;
   $('.'+temp).css('background-color','rgb('+rgb+')').attr('title',temp);
 }
+
 var get_temps_success = function(data){
   var temp_class;
   var bounds;
@@ -35,6 +38,7 @@ var get_temps_success = function(data){
   var max = temps[temps.length-1];
   var min = temps[0];
 }
+
 var get_temps = function(map){
-  ajax('','GET','json','/temps',get_temps_success);
+  ajax('','GET','json','/temps/',get_temps_success);
 }

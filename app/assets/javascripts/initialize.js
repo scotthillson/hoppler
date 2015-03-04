@@ -1,23 +1,38 @@
-var initialize_google_map = function(){
+var map;
+var get_towers = function(){
+  ajax('','GET','json','/towers',parse_towers,map);
+}
+
+var parse_towers = function(data,map){
+  $.each(data,function(i,tower){
+    gather_images(tower,map);
+  });
+}
+
+var initialize = function(){
   var width = document.documentElement.clientWidth;
   if ( width < 1000 ){
     var zoom = 5;
   } else {
     var zoom = 7;
   }
-  console.log(google);
   var options = {center:{lat: 45.710, lng: -122.959},
   zoom:zoom,
   mapTypeId:google.maps.MapTypeId.TERRAIN};
-  var map = new google.maps.Map(document.getElementById('map-canvas'),options);
-  console.log(options)
+  map = new google.maps.Map(document.getElementById('map-canvas'),options);
+  get_towers();
 }
 
-var initialize = function(){
-  initialize_google_map();
-  //new_overlay_from_bounds(43.07, -126.02, 48.34, -119.85); // portland
-  //new_overlay_from_bounds(44.40, -127.24, 49.81, -120.91); // langley
-  //new_overlay_from_bounds(44.43, -125.69, 50.94, -119.24); // seattle
-  //new_overlay_from_bounds(39.60, -125.58, 44.55, -119.74); // medford
-  //get_temps();
+var newOverlay = function(bounds,overlay_class,img){
+  console.log(bounds);
+  // Initialize all properties.
+  this.className = overlay_class;
+  this.bounds_ = bounds;
+  this.image_ = img;
+  this.map_ = map;
+  // Define a property to hold the image's div. We'll
+  // actually create this div upon receipt of the onAdd()
+  // method so we'll leave it null for now.
+  this.div_ = null;
+
 }
