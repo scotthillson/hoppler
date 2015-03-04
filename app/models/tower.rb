@@ -6,6 +6,12 @@ class Tower < ActiveRecord::Base
     Nokogiri::HTML(open(page))
   end
 
+  def self.populate
+    Tower.all.each do |t|
+      t.scan
+    end
+  end
+
   def scan
     page = "http://radar.weather.gov/ridge/RadarImg/N0R/#{self.rid}"
     page = open_page(page)
@@ -20,15 +26,15 @@ class Tower < ActiveRecord::Base
     end
   end
 
-  def generate(rid,sw_lat,sw_long,ne_lat,ne_long,center_lat,center_long,city,state)
+  def generate(rid,sw_lat,sw_lng,ne_lat,ne_lng,center_lat,center_lng,city,state)
     t = new
     t.rid = rid
     t.sw_lat = sw_lat
-    t.sw_long = sw_long
+    t.sw_long = sw_lng
     t.ne_lat = ne_lat
-    t.ne_long = ne_long
+    t.ne_long = ne_lng
     t.center_lat = center_lat
-    t.center_long = center_long
+    t.center_long = center_lng
     t.city = city
     t.state = state
     t.save
