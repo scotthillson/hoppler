@@ -1,4 +1,5 @@
 var map;
+
 var get_towers = function(){
   ajax('','GET','json','/towers',parse_towers,map);
 }
@@ -21,18 +22,4 @@ var initialize = function(){
   mapTypeId:google.maps.MapTypeId.TERRAIN};
   map = new google.maps.Map(document.getElementById('map-canvas'),options);
   get_towers();
-}
-
-var newOverlay = function(bounds,overlay_class,img){
-  console.log(bounds);
-  // Initialize all properties.
-  this.className = overlay_class;
-  this.bounds_ = bounds;
-  this.image_ = img;
-  this.map_ = map;
-  // Define a property to hold the image's div. We'll
-  // actually create this div upon receipt of the onAdd()
-  // method so we'll leave it null for now.
-  this.div_ = null;
-
 }
