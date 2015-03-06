@@ -6,6 +6,7 @@ require 'open-uri'
 gem 'nokogiri'
 # amazon web services
 gem 'aws-sdk-resources', '~> 2.0.28'
+gem 'aws-sdk'
 # bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
@@ -24,7 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
-# spring speeds up development by keeping your application running in the background https://github.com/rails/spring
+# spring speeds up development by keeping things running  https://github.com/rails/spring
 gem 'spring',        group: :development
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
