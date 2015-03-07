@@ -28,8 +28,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
-    aws-sdk (2.0.29)
-      aws-sdk-resources (= 2.0.29)
     aws-sdk-core (2.0.29)
       builder (~> 3.0)
       jmespath (~> 1.0)
@@ -132,7 +130,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
   aws-sdk-resources (~> 2.0.28)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)

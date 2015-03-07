@@ -1,5 +1,5 @@
 class Tower < ActiveRecord::Base
-
+  PATH = 'http://radar.weather.gov/ridge/RadarImg/N0R/'
   has_many :images
 
   def open_page(page)
@@ -7,20 +7,20 @@ class Tower < ActiveRecord::Base
   end
 
   def self.populate
-    Tower.all.each do |t|
+    all.each do |t|
       t.scan
     end
   end
 
   def scan
-    page = "http://radar.weather.gov/ridge/RadarImg/N0R/#{self.rid}"
-    page = open_page(page)
-    page = page.css('body').css('table').search('tr').each do |r|
+    page = "#{PATH}#{self.rid}"
+    open = open_page(page)
+    open = open.css('body').css('table').search('tr').each do |r|
       if r.search('td')[1] && r.search('td')[2]
         if r.search('td')[1].text.include? 'gif'
           image = r.search('td')[1].text
           time = r.search('td')[2].text
-          Image.store(self,image,time)
+          Image.store(self,image,time,page)
         end
       end
     end
@@ -38,6 +38,45 @@ class Tower < ActiveRecord::Base
     t.city = city
     t.state = state
     t.save
+  end
+
+  def self.averager
+    towers = all
+    puts 'sw lat'
+    difs = []
+    towers.each do |t|
+      dif = t.center_lat.to_f - t.sw_lat.to_f
+      difs.push dif
+      #puts ( dif )
+    end
+    puts difs.inject{ |sum, el| sum + el }.to_f / difs.size
+    
+    puts 'ne lat'
+    difs = []
+    towers.each do |t|
+      dif = t.center_lat.to_f - t.ne_lat.to_f
+      difs.push dif
+      #puts ( dif )
+    end
+    puts difs.inject{ |sum, el| sum + el }.to_f / difs.size
+    
+    puts 'sw lng'
+    difs = []
+    towers.each do |t|
+      dif = t.center_lng.to_f - t.sw_lng.to_f
+      difs.push dif
+      #puts ( dif )
+    end
+    puts difs.inject{ |sum, el| sum + el }.to_f / difs.size
+    
+    puts 'ne lng'
+    difs = []
+    towers.each do |t|
+      dif = t.center_lng.to_f - t.ne_lng.to_f
+      difs.push dif
+      #puts ( dif )
+    end
+    difs.inject{ |sum, el| sum + el }.to_f / difs.size
   end
 
 end

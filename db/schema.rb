@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305192857) do
+ActiveRecord::Schema.define(version: 20150306233522) do
 
   create_table "images", force: true do |t|
     t.integer  "tower_id"
@@ -41,13 +41,17 @@ ActiveRecord::Schema.define(version: 20150305192857) do
     t.string   "city"
     t.string   "state"
     t.string   "sw_lat"
-    t.string   "sw_long"
+    t.string   "sw_lng"
     t.string   "ne_lat"
-    t.string   "ne_long"
+    t.string   "ne_lng"
     t.string   "center_lat"
-    t.string   "center_long"
+    t.string   "center_lng"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "est_sw_lat"
+    t.string   "est_sw_lng"
+    t.string   "est_ne_lat"
+    t.string   "est_ne_lng"
   end
 
   create_table "uploads", force: true do |t|

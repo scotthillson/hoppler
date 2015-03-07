@@ -15,7 +15,7 @@ var initialize = function(){
   if ( width < 1000 ){
     var zoom = 5;
   } else {
-    var zoom = 7;
+    var zoom = 6;
   }
   var options = {center:{lat: 45.710, lng: -122.959},
   zoom:zoom,
