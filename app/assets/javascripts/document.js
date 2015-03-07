@@ -1,6 +1,6 @@
 var ready = function(){
   initialize();
-  $('#avalanche').on('click',avalanche);
+  $('#avalanche').on('click','avalanche');
   $('.time-line').on('click',click_time);
   $('.opacity-up').on('click',opacityUp);
   $('#temperature').on('click',temperature);

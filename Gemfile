@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-# for nokogiri
+# for opening files and nokogiri and such
 require 'open-uri'
 # nokogiri
 gem 'nokogiri'
 # amazon web services
 gem 'aws-sdk-resources', '~> 2.0.28'
-gem 'aws-sdk'
 # bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 # Use sqlite3 as the database for Active Record
