@@ -1,8 +1,11 @@
 var opacity = 0.6;
-var images = {};
 
-var click_time = function(){
-  if(pause==0){pause=1;}else{pause=0;}
+var time_click = function(){
+  if(pause==0){
+    pause=1;
+  } else {
+    pause=0;
+  }
 }
 
 var times = function(){
@@ -23,20 +26,26 @@ var times = function(){
   }
 }
 
-var cycle = function(){
-  setInterval(function(){
-    $('#time-'+i).css('color','#FFF');
-      if(i<1){i=8;}else{i=i-pause;}
-      $('#time-'+i).css('color','#F90');
-      if(j==5){$('.radar').delay(100).css('display','block');$('#loading').css('display','none');}
-  },990);
+var each_tower = function(e,i,a){
+  var image;
+  var timer = 900;
+  for ( var k in images[e]){
+    if (images[e][k]){
+      $(images[e][k]).show();
+    }
+  }
 }
 
-var opacityUp = function(){
+var cycle = function(){
+  towers.forEach(each_tower);
+}
+
+var opacity_up = function(){
   if(opacity<1){opacity = (parseFloat(opacity)+.2).toFixed(1);}
   $('.nexrad-overlay').css('opacity',opacity);
 }
-var opacityDown = function(){
+
+var opacity_down = function(){
   if (opacity>0){opacity = parseFloat(opacity-.2).toFixed(1);}
   $('.nexrad-overlay').css('opacity',opacity);
 }

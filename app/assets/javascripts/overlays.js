@@ -1,22 +1,31 @@
 nexradOverlay.prototype = new google.maps.OverlayView();
 
-function nexradOverlay(bounds,img){
+function nexradOverlay(bounds,path,img,tower){
+  this.image_ = path+img['image'];
+  this.time_ = img['time'];
   this.bounds_ = bounds;
-  this.image_ = img;
-  this.map_ = map;
+  this.tower_ = tower;
   this.div_ = null;
   this.setMap(map);
 }
 
-var image_loader = function(img,div){
+var image_loader = function(img,div,nex){
+  images[nex.tower_][nex.time_] = img;
   div.appendChild(img);
+  loaded_images.push(img);
+  if ( loaded_images.length == queued_images.length ){
+    cycle();
+  }
 }
 
-var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,img){
+var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,path,img,tower_id){
+  if ( swlat == null ){
+    return false;
+  }
   var swBound = new google.maps.LatLng(swlat,swlng);
   var neBound = new google.maps.LatLng(nelat,nelng);
   var bounds = new google.maps.LatLngBounds(swBound, neBound);
-  var overlay = new nexradOverlay(bounds,img);
+  var overlay = new nexradOverlay(bounds,path,img,tower_id);
 }
 
 nexradOverlay.prototype.onAdd = function(){
@@ -28,8 +37,9 @@ nexradOverlay.prototype.onAdd = function(){
   img.src = this.image_;
   img.style.width = '100%';
   img.style.height = '100%';
+  img.style.display = 'none';
   img.style.position = 'absolute';
-  $(img).load(image_loader(img,div));
+  $(img).load(image_loader(img,div,this));
   this.div_ = div;
   var panes = this.getPanes();
   panes.overlayLayer.appendChild(div);
