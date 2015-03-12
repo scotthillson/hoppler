@@ -36,9 +36,21 @@ var gather_images = function(tower){
 
 var images_success = function(data,tower){
   var sw_lat = Number(tower['sw_lat']);
+  if(sw_lat==0){
+    sw_lat = Number(tower['est_sw_lat']);
+  }
   var sw_lng = Number(tower['sw_lng']);
+  if(sw_lng==0){
+    sw_lng = Number(tower['est_sw_lng']);
+  }
   var ne_lat = Number(tower['ne_lat']);
+  if(ne_lat==0){
+    ne_lat = Number(tower['est_ne_lat']);
+  }
   var ne_lng = Number(tower['ne_lng']);
+  if(ne_lng==0){
+    ne_lng = Number(tower['est_ne_lng']);
+  }
   var path = 'https://s3-us-west-2.amazonaws.com/hoppler/';
   $.each(data,function(i,img){
     if ( sw_lat ){

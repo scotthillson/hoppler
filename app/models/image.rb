@@ -2,8 +2,9 @@ class Image < ActiveRecord::Base
   MAX_DELTA = 600
 
   def self.store(tower,image,time,page)
+    success = 0
     if !tower || !image
-      return false
+      return success
     end
     if where(image: image).count < 1
       i = new
@@ -12,21 +13,31 @@ class Image < ActiveRecord::Base
       i.time = time
       if upload_image page, image
         i.save
+        success = 1
       end
     end
-    true
+    success
   end
 
-  def self.upload_image page,image
+  def self.upload_image page, image
+    i = 0
+    tries = 5
+    success = false
     file_path = "#{page}/#{image}"
-    begin
-      file = open file_path
-    rescue
-      false
-    else
-      Upload.upload_file file, image
-      true
+    while i < tries
+      begin
+        file = open file_path
+      rescue
+        i += 1
+        puts "repeat #{image}"
+        sleep(1/2)
+      else
+        Upload.upload_file file, image
+        success = true
+        break
+      end
     end
+    success
   end
 
   def self.test

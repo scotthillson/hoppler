@@ -1,4 +1,6 @@
+var timeout;
 var opacity = 0.6;
+var increment = 500;
 
 var time_click = function(){
   if(pause==0){
@@ -20,9 +22,20 @@ var times = function(){
       hour = line.substr(0,2);
       hour = hour - zone ;
       var platform = navigator.platform;
-      if (platform=='iPhone'||platform=='android'){$('.time').css({'top':'70px','left':'5px','font-size':'21px'});}
+      if (platform=='iPhone'||platform=='android'){
+        $('.time').css({'top':'70px','left':'5px','font-size':'21px'});
+      }
       $('.time').append('<div class="time-line" id="time-'+k+'">'+hour+':'+minute+'</div>');
     }
+  }
+}
+
+var showhide = function(one,two){
+  if(one){
+    $(one).hide();
+  }
+  if(two){
+    $(two).show();
   }
 }
 
@@ -33,8 +46,8 @@ var each_tower = function(tower){
   var t = 0;
   for ( var k in imgs ){
     two = imgs[k];
-    t += 900
-    setTimeout(
+    t += increment;
+    timeout = setTimeout(
       (function(one,two){
         return function(){
           if(one){
@@ -47,11 +60,19 @@ var each_tower = function(tower){
     })(one,two),t);
     one = two;
   }
+  return t;
 }
 
 var cycle = function(){
+  var wait = 0;
   for ( k in towers ){
-    each_tower(towers[k]);
+    w = each_tower(towers[k]);
+    if(w > wait){
+      wait = w;
+    }
+  }
+  if(wait>0){
+    setTimeout(cycle,wait);
   }
 }
 
