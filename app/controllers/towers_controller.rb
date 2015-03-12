@@ -10,7 +10,7 @@ class TowersController < ApplicationController
 
   def show
     @tower = Tower.find params[:id]
-    @images = @tower.images.last(20)
+    @images = @tower.images.last(30)
     respond_to do |format|
       format.html{}
       format.json{render json: @images}

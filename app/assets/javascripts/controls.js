@@ -26,18 +26,33 @@ var times = function(){
   }
 }
 
-var each_tower = function(e,i,a){
-  var image;
-  var timer = 900;
-  for ( var k in images[e]){
-    if (images[e][k]){
-      $(images[e][k]).show();
-    }
+var each_tower = function(tower){
+  var imgs = images[tower];
+  var one;
+  var two;
+  var t = 0;
+  for ( var k in imgs ){
+    two = imgs[k];
+    t += 900
+    setTimeout(
+      (function(one,two){
+        return function(){
+          if(one){
+            $(one).hide();
+          }
+          if(two){
+            $(two).show();
+          }
+        }
+    })(one,two),t);
+    one = two;
   }
 }
 
 var cycle = function(){
-  towers.forEach(each_tower);
+  for ( k in towers ){
+    each_tower(towers[k]);
+  }
 }
 
 var opacity_up = function(){
