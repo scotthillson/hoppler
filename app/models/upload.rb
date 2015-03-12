@@ -10,7 +10,21 @@ class Upload < ActiveRecord::Base
 
   def self.upload_file file, file_path
     s3 = bucket
-    object = s3.put_object(bucket: BUCKET, key: file_path, body: file )
+    begin s3.get_object(bucket: BUCKET, key: file_path)
+      return false
+    rescue
+      s3.put_object(bucket: BUCKET, key: file_path, body: file )
+      return true
+    end
+  end
+
+  def self.test key
+    s3 = bucket
+    begin s3.get_object(bucket: BUCKET, key: key)
+      return false
+    rescue
+      return true
+    end
   end
 
 end
