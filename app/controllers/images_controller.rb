@@ -7,4 +7,8 @@ class ImagesController < ApplicationController
     end
   end
 
+  def manifest
+    render json: Image.manifest
+  end
+
 end

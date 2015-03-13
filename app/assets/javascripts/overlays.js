@@ -1,7 +1,8 @@
 nexradOverlay.prototype = new google.maps.OverlayView();
 
 function nexradOverlay(bounds,path,img,tower){
-  this.image_ = path+img['image'];
+  this.path_ = path;
+  this.image_ = img['image'];
   this.time_ = img['time'];
   this.bounds_ = bounds;
   this.tower_ = tower;
@@ -31,11 +32,12 @@ var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,path,img,tower_id){
 
 nexradOverlay.prototype.onAdd = function(){
   var div = document.createElement('div');
+  div.style.position = 'absolute';
   div.style.borderStyle = 'none';
   div.style.borderWidth = '0px';
-  div.style.position = 'absolute';
   var img = document.createElement('img');
-  img.src = this.image_;
+  img.src = this.path_ + this.image_;
+  img.alt = this.image_;
   img.style.width = '100%';
   img.style.height = '100%';
   img.style.display = 'none';

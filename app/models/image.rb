@@ -40,29 +40,62 @@ class Image < ActiveRecord::Base
     success
   end
 
-  def self.test
-    master_hash = Hash.new
-    images = all
-    images.each do |i|
-      master_hash[i.tower_id] ||= []
-      master_hash[i.tower_id].push i.time
+  def self.make_tower_hash
+    tower_hash = Hash.new
+    images = Image.all
+    images.each do |img|
+      tower_hash[img.tower_id] ||= []
+      tower_hash[img.tower_id].push img
     end
-    time_array = Array.new
-    master_hash[master_hash.keys[0]].each do |v|
+    tower_hash
+  end
+
+  def self.make_time_hash tower_hash
+    time_hash = Hash.new
+    tower_hash[1].each do |img|
       hash = Hash.new
-      hash[master_hash.keys[0]] = v
-      time_array.push hash
+      hash[1] = img.time
+      time_hash[img.image] = hash
     end
-    time_array.each do |v|
-      master_hash.keys[1..-1].each do |master_hash_key|
-        master_hash[master_hash_key].each do |time|
-          if time - v[1] < MAX_DELTA
-            v[master_hash_key] = time
+    time_hash
+  end
+
+  def self.make_img_hash tower_hash
+    img_hash = Hash.new
+    tower_hash[1].each do |img|
+      hash = Hash.new
+      hash[1] = img.image
+      img_hash[img.image] = hash
+    end
+    img_hash
+  end
+
+  def self.dif img, comp
+    (img.time - comp).abs
+  end
+
+  def self.manifest
+    tower_hash = make_tower_hash
+    img_hash = make_img_hash tower_hash
+    time_hash = make_time_hash tower_hash
+    time_hash.keys.each do |tk|
+      tower_hash.keys[1..-1].each do |t|
+        tower_hash[t].each do |i|
+          comp = time_hash[tk][1].time
+          d = dif(i,comp)
+          if d < MAX_DELTA
+            if !time_hash[tk][t]
+              img_hash[tk][t] = i.image
+              time_hash[tk][t] = i.time
+            elsif d < dif(time_hash[tk][t],comp)
+              img_hash[tk][t] = i.image
+              time_hash[tk][t] = i.time
+            end
           end
         end
       end
     end
-    time_array
+    img_hash
   end
 
 end

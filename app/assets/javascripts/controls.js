@@ -11,22 +11,14 @@ var time_click = function(){
 }
 
 var times = function(){
-  var date = new Date();
-  console.log('times ' + date.toString('hhmmss'));
-  var zone = date.getTimezoneOffset();
-  zone = zone / 60 ;
   $('.time').empty();
-  for(k=0;k<9;k++){
-    if(images){
-      line = images[k+36];
-      hour = line.substr(0,2);
-      hour = hour - zone ;
-      var platform = navigator.platform;
-      if (platform=='iPhone'||platform=='android'){
-        $('.time').css({'top':'70px','left':'5px','font-size':'21px'});
-      }
-      $('.time').append('<div class="time-line" id="time-'+k+'">'+hour+':'+minute+'</div>');
-    }
+  var platform = navigator.platform;
+  if (platform=='iPhone'||platform=='android'){
+    $('.time').css({'top':'70px','left':'5px','font-size':'21px'});
+  }
+  for(var k in manifest){
+    console.log(k);
+    //$('.time').append('<div class="time-line" id="time-'+k+'">'+time+'</div>');
   }
 }
 
@@ -46,6 +38,9 @@ var each_tower = function(tower){
   var t = 0;
   for ( var k in imgs ){
     two = imgs[k];
+    if(manifest[two.alt]){
+      console.log(manifest[two.alt]);
+    }
     t += increment;
     timeout = setTimeout(
       (function(one,two){

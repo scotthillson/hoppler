@@ -1,11 +1,17 @@
 var map;
 var images = {};
 var towers = [];
+var manifest = {};
 var loaded_images = [];
 var queued_images = [];
 
 var get_towers = function(){
   ajax('','GET','json','/towers',parse_towers,map);
+  ajax('','GET','json','/manifest',manifest_success,'');
+}
+
+var manifest_success = function(data,objects){
+  manifest = data;
 }
 
 var parse_towers = function(data,map){
