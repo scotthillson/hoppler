@@ -9,7 +9,7 @@
 # end
 # Learn more: http://github.com/javan/whenever
 
-set :environment, 'developement'
+set :environment, 'development'
 
 set :output, '/home/rails/weather/log/whenever.log'
 
