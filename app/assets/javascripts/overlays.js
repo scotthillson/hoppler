@@ -35,6 +35,7 @@ nexradOverlay.prototype.onAdd = function(){
   div.style.position = 'absolute';
   div.style.borderStyle = 'none';
   div.style.borderWidth = '0px';
+  div.style.opacity = opacity;
   var img = document.createElement('img');
   img.src = this.path_ + this.image_;
   img.alt = this.image_;
