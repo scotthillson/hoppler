@@ -9,8 +9,9 @@ class TowersController < ApplicationController
   end
 
   def show
+    count ||= 20
     @tower = Tower.find params[:id]
-    @images = @tower.images.order(:time).last(20)
+    @images = @tower.images.order(:time).last(count)
     respond_to do |format|
       format.html{}
       format.json{render json: @images}
