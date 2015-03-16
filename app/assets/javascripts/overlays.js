@@ -1,5 +1,4 @@
 nexradOverlay.prototype = new google.maps.OverlayView();
-
 function nexradOverlay(bounds,path,img,tower){
   this.path_ = path;
   this.image_ = img['image'];
@@ -9,7 +8,6 @@ function nexradOverlay(bounds,path,img,tower){
   this.div_ = null;
   this.setMap(map);
 }
-
 var image_loader = function(img,div,nex){
   images[nex.tower_][nex.time_] = img;
   div.appendChild(img);
@@ -19,7 +17,6 @@ var image_loader = function(img,div,nex){
     cycle();
   }
 }
-
 var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,path,img,tower_id){
   if ( swlat == null ){
     return false;
@@ -29,7 +26,6 @@ var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,path,img,tower_id){
   var bounds = new google.maps.LatLngBounds(swBound, neBound);
   var overlay = new nexradOverlay(bounds,path,img,tower_id);
 }
-
 nexradOverlay.prototype.onAdd = function(){
   var div = document.createElement('div');
   div.style.position = 'absolute';
@@ -48,7 +44,6 @@ nexradOverlay.prototype.onAdd = function(){
   var panes = this.getPanes();
   panes.overlayLayer.appendChild(div);
 }
-
 nexradOverlay.prototype.draw = function() {
   var overlayProjection = this.getProjection();
   var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
