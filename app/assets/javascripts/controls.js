@@ -1,6 +1,3 @@
-var timeout;
-var opacity = 0.6;
-var increment = 500;
 var time_click = function(){
   if(pause==0){
     pause=1;

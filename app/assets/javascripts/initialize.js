@@ -1,23 +1,13 @@
 var map;
+var timeout;
 var images = {};
 var towers = [];
 var manifest = {};
+var opacity = 0.6;
+var increment = 500;
 var loaded_images = [];
 var queued_images = [];
-var get_towers = function(){
-  ajax('','GET','json','/towers',parse_towers,map);
-  ajax('','GET','json','/manifest',manifest_success,'');
-}
-var manifest_success = function(data,objects){
-  manifest = data;
-}
-var parse_towers = function(data,map){
-  $.each(data,function(i,tower){
-    images[tower['id']] = {};
-    towers.push(tower['id']);
-    gather_images(tower,map);
-  });
-}
+
 var initialize = function(){
   var width = document.documentElement.clientWidth;
   if ( width < 1000 ){
@@ -30,6 +20,21 @@ var initialize = function(){
   mapTypeId:google.maps.MapTypeId.TERRAIN};
   map = new google.maps.Map(document.getElementById('map-canvas'),options);
   get_towers();
+}
+var get_towers = function(){
+  ajax('','GET','json','/towers',parse_towers,map);
+  ajax('','GET','json','/manifest',manifest_success,'');
+}
+var manifest_success = function(data,objects){
+  manifest = data;
+}
+var parse_towers = function(data,map){
+  $.each(data,function(i,tower){
+    console.log('parsing towers')
+    images[tower['id']] = {};
+    towers.push(tower['id']);
+    gather_images(tower,map);
+  });
 }
 var gather_images = function(tower){
   ajax('','GET','json','/towers/'+tower['id'],images_success,tower);
