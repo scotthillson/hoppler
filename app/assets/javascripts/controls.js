@@ -31,9 +31,7 @@ var showhide = function(tower,progress,one,two,t){
       }
   })(tower,progress,one,two),t);
 }
-var manifest_timer = function(){
-  //for ( k in manifest ){}
-}
+var manifest_timer = function(){}
 var each_tower = function(tower){
   var imgs = images[tower];
   var keys = Object.keys(imgs).length;
@@ -54,6 +52,7 @@ var each_tower = function(tower){
   return t;
 }
 var cycle = function(){
+  cycles += 1
   var wait = 0;
   if(manifest.length){
     manifest_timer();
@@ -66,7 +65,11 @@ var cycle = function(){
     }
   }
   if(wait>0){
-    setTimeout(cycle,wait);
+    if(cycles>10){
+      setTimeout(setup,wait);
+    } else{
+      setTimeout(cycle,wait);
+    }
   }
 }
 var opacity_up = function(){

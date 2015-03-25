@@ -1,13 +1,15 @@
 var map;
+var pause;
+var cycles;
+var images;
 var timeout;
-var images = {};
+var manifest;
 var towers = [];
 var progress_div;
-var manifest = {};
+var loaded_images;
+var queued_images;
 var opacity = 0.6;
 var increment = 500;
-var loaded_images = [];
-var queued_images = [];
 
 var initialize = function(){
   var width = document.documentElement.clientWidth;
@@ -16,15 +18,24 @@ var initialize = function(){
   } else {
     var zoom = 6;
   }
-  var options = {center:{lat: 45.710, lng: -122.959},
-  zoom:zoom,
-  mapTypeId:google.maps.MapTypeId.TERRAIN};
+  var options = {
+    center:{lat: 45.710,lng: -122.959},
+    zoom:zoom,
+    mapTypeId:google.maps.MapTypeId.TERRAIN
+  };
   map = new google.maps.Map(document.getElementById('map-canvas'),options);
+  draw_progress();
+  setup();
+}
+var setup = function(){
+  loaded_images = [];
+  queued_images = [];
+  images = {};
+  cycles = 0;
   get_towers();
 }
 var get_towers = function(){
   ajax('','GET','json','/towers',parse_towers,map);
-  //ajax('','GET','json','/manifest',manifest_success,'');
 }
 var manifest_success = function(data,objects){
   manifest = data;
