@@ -2,6 +2,7 @@ var map;
 var timeout;
 var images = {};
 var towers = [];
+var progress_div;
 var manifest = {};
 var opacity = 0.6;
 var increment = 500;
@@ -22,7 +23,6 @@ var initialize = function(){
   get_towers();
 }
 var get_towers = function(){
-  console.log('fetching towers');
   ajax('','GET','json','/towers',parse_towers,map);
   //ajax('','GET','json','/manifest',manifest_success,'');
 }
@@ -31,7 +31,6 @@ var manifest_success = function(data,objects){
 }
 var parse_towers = function(data,map){
   $.each(data,function(i,tower){
-    console.log('parsing towers')
     images[tower['id']] = {};
     towers.push(tower['id']);
     gather_images(tower,map);
@@ -51,7 +50,6 @@ var images_success = function(data,tower){
   if(ne_lng==0){ne_lng = Number(tower['est_ne_lng']);}
   var path = 'https://s3-us-west-2.amazonaws.com/hoppler/';
   $.each(data,function(i,img){
-    console.log(tower['rid']);
     if ( sw_lat ){
       queued_images.push(img);
       new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);

@@ -14,6 +14,7 @@ var image_loader = function(img,div,nex){
   loaded_images.push(img);
   console.log(loaded_images.length - queued_images.length);
   if ( loaded_images.length == queued_images.length ){
+    draw_progress();
     cycle();
   }
 }
@@ -54,3 +55,13 @@ nexradOverlay.prototype.draw = function() {
   div.style.width = (ne.x - sw.x) + 'px';
   div.style.height = (sw.y - ne.y) + 'px';
 };
+var draw_progress = function(){
+  var div = document.createElement('div');
+  div.style.backgroundColor = 'black';
+  div.style.position = 'fixed';
+  div.style.height = '5px';
+  div.style.left = 0;
+  div.style.top = 0;
+  document.body.appendChild(div);
+  progress_div = div;
+}
