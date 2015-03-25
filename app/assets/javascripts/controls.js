@@ -11,9 +11,6 @@ var times = function(){
   if (platform=='iPhone'||platform=='android'){
     $('.time').css({'top':'70px','left':'5px','font-size':'21px'});
   }
-  for(var k in manifest){
-    console.log(k);
-  }
 }
 var showhide = function(tower,progress,one,two,t){
   timeout = setTimeout(
@@ -65,11 +62,7 @@ var cycle = function(){
     }
   }
   if(wait>0){
-    if(cycles>10){
-      setTimeout(cycle,wait);
-    } else{
-      setTimeout(cycle,wait);
-    }
+    setTimeout(cycle,wait);
   }
 }
 var opacity_up = function(){

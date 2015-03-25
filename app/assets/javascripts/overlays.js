@@ -14,8 +14,10 @@ var image_loader = function(img,div,nex){
   loaded_images.push(img);
   //console.log(loaded_images.length - queued_images.length);
   if ( loaded_images.length == queued_images.length ){
-    console.log(Object.keys(images[1]))
-    cycle();
+    if(cycles<1){
+      console.log(Object.keys(images[1]))
+      cycle();
+    }
   }
 }
 var new_nexrad_overlay = function(swlat,swlng,nelat,nelng,path,img,tower_id){
