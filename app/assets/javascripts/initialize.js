@@ -2,10 +2,10 @@ var map;
 var pause;
 var cycles;
 var images;
+var towers;
 var timeout;
-var manifest;
-var towers = [];
 var progress_div;
+var manifest = [];
 var loaded_images;
 var queued_images;
 var opacity = 0.6;
@@ -30,6 +30,7 @@ var initialize = function(){
 var setup = function(){
   loaded_images = [];
   queued_images = [];
+  towers = [];
   images = {};
   cycles = 0;
   get_towers();
