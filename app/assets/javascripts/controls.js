@@ -15,9 +15,9 @@ var times = function(){
     console.log(k);
   }
 }
-var showhide = function(keys,one,two,i,t){
+var showhide = function(tower,progress,one,two,t){
   timeout = setTimeout(
-    (function(keys,one,two,i){
+    (function(tower,progress,one,two){
       return function(){
         if(one){
           $(one).hide();
@@ -25,9 +25,11 @@ var showhide = function(keys,one,two,i,t){
         if(two){
           $(two).show();
         }
-        progress_div.style.width = (i/keys)*100 + '%';
+        if(tower==1){
+          progress_div.style.width = progress+'%';
+        }
       }
-  })(keys,one,two,i),t);
+  })(tower,progress,one,two),t);
 }
 var manifest_timer = function(){
   //for ( k in manifest ){}
@@ -39,18 +41,19 @@ var each_tower = function(tower){
   var two;
   var t = 0;
   var i = 1;
+  var progress;
   for ( var k in imgs ){
     two = imgs[k];
     t += increment;
-    i += 1;
-    showhide(keys,one,two,i,t);
+    progress = (i/keys)*100;
+    showhide(tower,progress,one,two,t);
     one = two;
+    i += 1;
   }
-  showhide(keys,one,null,i,t+increment);
+  showhide(0,100,one,null,t+increment);
   return t;
 }
 var cycle = function(){
-  progress_div.style.width = '0%';
   var wait = 0;
   if(manifest.length){
     manifest_timer();
