@@ -52,7 +52,7 @@ var each_tower = function(tower){
   return t;
 }
 var cycle = function(){
-  cycles += 1
+  cycles += 1;
   var wait = 0;
   if(manifest.length){
     manifest_timer();
@@ -66,7 +66,7 @@ var cycle = function(){
   }
   if(wait>0){
     if(cycles>10){
-      setTimeout(setup,wait);
+      setTimeout(cycle,wait);
     } else{
       setTimeout(cycle,wait);
     }
