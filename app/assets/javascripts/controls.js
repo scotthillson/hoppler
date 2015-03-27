@@ -62,7 +62,11 @@ var cycle = function(){
     }
   }
   if(wait>0){
-    setTimeout(cycle,wait);
+    if(cycles>9){
+      setTimeout(setup,wait);
+    } else{
+      setTimeout(cycle,wait);
+    }
   }
 }
 var opacity_up = function(){
