@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+
   MAX_DELTA = 600
 
   def self.store(tower,image,time,page)

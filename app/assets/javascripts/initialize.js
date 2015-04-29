@@ -52,7 +52,8 @@ var parse_towers = function(data,map){
   });
 }
 var gather_images = function(tower){
-  ajax('','GET','json','/towers/'+tower['id'],images_success,tower);
+  var ims = images:get_param('images');
+  ajax(images:ims,'GET','json','/towers/'+tower['id'],images_success,tower);
 }
 var images_success = function(data,tower){
   image_count = data.length;

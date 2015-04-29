@@ -1,4 +1,5 @@
 class Upload < ActiveRecord::Base
+
   BUCKET = 'hoppler'
 
   def self.bucket
