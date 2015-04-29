@@ -15,7 +15,7 @@ var increment = 500;
 var initialize = function(){
   if(get_param('increment')){
     if(get_param('increment')>0){
-      increment = get_param('increment');
+      increment = Number(get_param('increment'));
     }
   }
   var width = document.documentElement.clientWidth;
