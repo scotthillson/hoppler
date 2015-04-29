@@ -12,11 +12,12 @@ var image_loader = function(img,div,nex){
   images[nex.tower_][nex.time_] = img;
   div.appendChild(img);
   loaded_images.push(img);
-  //console.log(loaded_images.length - queued_images.length);
-  if ( loaded_images.length == queued_images.length ){
-    if(cycles<1){
-      console.log(Object.keys(images[1]))
-      cycle();
+  if (loaded_images.length == queued_images.length){
+    if (loaded_images.length >= ( tower_count * image_count )){
+      if(cycles<1){
+        console.log(Object.keys(images[1]))
+        cycle();
+      }
     }
   }
 }

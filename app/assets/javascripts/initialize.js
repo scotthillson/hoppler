@@ -4,6 +4,8 @@ var cycles;
 var images;
 var towers;
 var timeout;
+var tower_count;
+var image_count;
 var progress_div;
 var manifest = [];
 var loaded_images;
@@ -42,6 +44,7 @@ var manifest_success = function(data,objects){
   manifest = data;
 }
 var parse_towers = function(data,map){
+  tower_count = data.length;
   $.each(data,function(i,tower){
     images[tower['id']] = {};
     towers.push(tower['id']);
@@ -52,6 +55,7 @@ var gather_images = function(tower){
   ajax('','GET','json','/towers/'+tower['id'],images_success,tower);
 }
 var images_success = function(data,tower){
+  image_count = data.length;
   var sw_lat = Number(tower['sw_lat']);
   if(sw_lat==0){sw_lat = Number(tower['est_sw_lat']);}
   var sw_lng = Number(tower['sw_lng']);
