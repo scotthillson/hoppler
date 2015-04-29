@@ -12,8 +12,12 @@ var loaded_images;
 var queued_images;
 var opacity = 0.6;
 var increment = 500;
-
 var initialize = function(){
+  if(get_param('increment')){
+    if(get_param('increment')>0){
+      increment = get_param('increment');
+    }
+  }
   var width = document.documentElement.clientWidth;
   if ( width < 1000 ){
     var zoom = 5;
