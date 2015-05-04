@@ -44,6 +44,7 @@ nexradOverlay.prototype.onAdd = function(){
   img.style.display = 'none';
   img.style.position = 'absolute';
   $(img).load(image_loader(img,div,this));
+  $(img).data('time',this.time_);
   this.div_ = div;
   var panes = this.getPanes();
   panes.overlayLayer.appendChild(div);

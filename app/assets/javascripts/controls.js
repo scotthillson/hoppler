@@ -24,6 +24,7 @@ var showhide = function(tower,progress,one,two,t){
         }
         if(tower==1){
           progress_div.style.width = progress+'%';
+          console.log($(two).data('time'));
         }
       }
   })(tower,progress,one,two),t);
