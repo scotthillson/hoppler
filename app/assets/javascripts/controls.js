@@ -13,7 +13,7 @@ var times = function(){
   }
 }
 var showhide = function(tower,progress,one,two,t){
-  timeout = setTimeout(
+  var timer = setTimeout(
     (function(tower,progress,one,two){
       return function(){
         if(one){
@@ -24,7 +24,8 @@ var showhide = function(tower,progress,one,two,t){
         }
         if(tower==1){
           progress_div.style.width = progress+'%';
-          console.log($(two).data('time'));
+          var string = $(two).data('time');
+          $(time_div).html(string.substring(11,16));
         }
       }
   })(tower,progress,one,two),t);

@@ -3,7 +3,7 @@ var pause;
 var cycles;
 var images;
 var towers;
-var timeout;
+var time_div;
 var tower_count;
 var image_count;
 var progress_div;
@@ -13,6 +13,7 @@ var queued_images;
 var opacity = 0.6;
 var increment = 500;
 var initialize = function(){
+  draw_progress();
   if(get_param('increment')){
     if(get_param('increment')>0){
       increment = Number(get_param('increment'));
@@ -30,7 +31,6 @@ var initialize = function(){
     mapTypeId:google.maps.MapTypeId.TERRAIN
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),options);
-  draw_progress();
   setup();
 }
 var setup = function(){

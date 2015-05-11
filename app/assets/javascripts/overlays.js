@@ -16,6 +16,7 @@ var image_loader = function(img,div,nex){
     if (loaded_images.length >= ( tower_count * image_count )){
       if(cycles<1){
         console.log(Object.keys(images[1]))
+        progress_div.style.backgroundColor = 'black';
         cycle();
       }
     }
@@ -59,13 +60,3 @@ nexradOverlay.prototype.draw = function() {
   div.style.width = (ne.x - sw.x) + 'px';
   div.style.height = (sw.y - ne.y) + 'px';
 };
-var draw_progress = function(){
-  var div = document.createElement('div');
-  div.style.backgroundColor = 'black';
-  div.style.position = 'fixed';
-  div.style.height = '5px';
-  div.style.left = 0;
-  div.style.top = 0;
-  document.body.appendChild(div);
-  progress_div = div;
-}

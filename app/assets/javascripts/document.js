@@ -9,6 +9,7 @@ var get_param = function(variable){
   }
 }
 var ready = function(){
+  draw_times();
   initialize();
   $('#avalanche').on('click','avalanche');
   $('.time-line').on('click',time_click);
