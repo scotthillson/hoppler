@@ -84,7 +84,7 @@ class Tower < ActiveRecord::Base
     difs = []
     if param == 'sw_lat'
       towers.each do |t|
-        if t.sw_lat && t.center_lat
+        if t.sw_lat.present? && t.center_lat.present?
           dif = t.center_lat.to_f - t.sw_lat.to_f
           difs.push dif
         end
@@ -93,7 +93,7 @@ class Tower < ActiveRecord::Base
     end
     if param == 'ne_lat'
       towers.each do |t|
-        if t.ne_lat && t.center_lat
+        if t.ne_lat.present? && t.center_lat.present?
           dif = t.center_lat.to_f - t.ne_lat.to_f
           difs.push dif
         end
@@ -102,7 +102,7 @@ class Tower < ActiveRecord::Base
     end
     if param == 'sw_lng'
       towers.each do |t|
-        if t.sw_lng && t.center_lng
+        if t.sw_lng.present? && t.center_lng.present?
           dif = t.center_lng.to_f - t.sw_lng.to_f
           difs.push dif
         end
@@ -111,7 +111,7 @@ class Tower < ActiveRecord::Base
     end
     if param =='ne_lng'
       towers.each do |t|
-        if t.ne_lng && t.center_lng
+        if t.ne_lng.present? && t.center_lng.present?
           dif = t.center_lng.to_f - t.ne_lng.to_f if t.ne_lng
           difs.push dif
         end
