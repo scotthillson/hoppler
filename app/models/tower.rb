@@ -36,28 +36,28 @@ class Tower < ActiveRecord::Base
 
   def estimator
     if self.center_lat
-      if self.sw_lat == nil
-        if self.est_sw_lat == nil
+      if self.sw_lat.blank?
+        if self.est_sw_lat.blank?
           self.est_sw_lat = self.center_lat.to_f - Tower.averager('sw_lat')
           self.save
         end
       end
-      if self.ne_lat == nil
-        if self.est_ne_lat == nil
+      if self.ne_lat.blank?
+        if self.est_ne_lat.blank?
           self.est_ne_lat = self.center_lat.to_f - Tower.averager('ne_lat')
           self.save
         end
       end
     end
     if self.center_lng
-      if self.sw_lng == nil
-        if self.est_sw_lng == nil
+      if self.sw_lng.blank?
+        if self.est_sw_lng.blank?
           self.est_sw_lng = self.center_lng.to_f - Tower.averager('sw_lng')
           self.save
         end
       end
-      if self.ne_lng == nil
-        if est_ne_lng == nil
+      if self.ne_lng.blank?
+        if est_ne_lng.blank?
           self.est_ne_lng = self.center_lng.to_f - Tower.averager('ne_lng')
           self.save
         end

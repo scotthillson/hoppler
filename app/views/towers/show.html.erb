@@ -1,0 +1,18 @@
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th class="text-center">image</th>
+      <th class="text-center">time</th>
+      <th class="text-center">created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @images.each do |image| %>
+      <tr>
+        <td><%= image.image %></td>
+        <td><%= image.time %></td>
+        <td><%= image.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
