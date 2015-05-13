@@ -64,7 +64,8 @@ var cycle = function(){
     }
   }
   if(wait>0){
-    if(cycles>9){
+    if(false){
+      // use this block to refresh the imagery after several minutes
       setTimeout(setup,wait);
     } else{
       setTimeout(cycle,wait);

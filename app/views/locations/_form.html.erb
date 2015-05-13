@@ -1,0 +1,27 @@
+<%= form_for @location, class: 'text-center', html: { style: 'width:300px;margin:auto' } do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@location.errors.count, "error") %> prohibited this user from being saved:</p>
+      <ul>
+        <% @location.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field text-center">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+    <%= f.label :city %><br>
+    <%= f.text_field :city, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label :state %><br>
+   <%= f.text_field :state, class: 'form-control text-center' %>
+  </div>
+  <div class="text-center">
+    <%= link_to 'Back', locations_path, class: 'btn btn-sm btn-warning' %>
+  </div>
+<% end %>

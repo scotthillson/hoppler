@@ -1,0 +1,61 @@
+<%= form_for @tower, class: 'text-center', html: { style: 'width:300px;margin:auto' } do |f| %>
+  <% if @tower.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(@tower.errors.count, "error") %> prohibited this user from being saved:</p>
+      <ul>
+        <% @tower.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <div class="field text-center">
+    <%= f.label 'rid', :rid %><br>
+    <%= f.text_field :rid, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+    <%= f.label :city %><br>
+    <%= f.text_field :city, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label :state %><br>
+   <%= f.text_field :state, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label :location %><br>
+   <%= f.select :location_id, options_for_select(Location.all.collect {|l| [ l.name, l.id ] }, { include_blank: false }),{},{class: 'form-control'} %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'sw lat', :sw_lat %><br>
+   <%= f.text_field :sw_lat, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'sw lng', :sw_lng %><br>
+   <%= f.text_field :sw_lng, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'ne lat', :ne_lat %><br>
+   <%= f.text_field :ne_lat, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'ne lng', :ne_lng %><br>
+   <%= f.text_field :ne_lng, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'center lat', :center_lat %><br>
+   <%= f.text_field :center_lat, class: 'form-control text-center' %>
+  </div>
+  <div class="field text-center">
+   <%= f.label 'center lng', :center_lng %><br>
+   <%= f.text_field :center_lng, class: 'form-control text-center' %>
+  </div>
+  <br>
+  <div class="text-center">
+    <%= link_to 'Back', locations_path, class: 'btn btn-sm btn-warning' %>
+  </div>
+  <br>
+  <div class="actions text-center">
+    <%= f.submit 'Save', class: 'btn btn-sm btn-success' %>
+  </div>
+<% end %>

@@ -1,6 +1,7 @@
 class Tower < ActiveRecord::Base
 
   has_many :images
+  belongs_to :location
 
   PATH = 'http://radar.weather.gov/ridge/RadarImg/N0R/'
 
