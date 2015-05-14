@@ -50,6 +50,7 @@ var manifest_success = function(data,objects){
 var parse_towers = function(data,map){
   tower_count = data.length;
   $.each(data,function(i,tower){
+    towers.push(tower['id']);
     images[tower['id']] = {};
     gather_images(tower,map);
   });
@@ -69,12 +70,8 @@ var images_success = function(data,tower){
   var ne_lng = Number(tower['ne_lng']);
   if(ne_lng==0){ne_lng = Number(tower['est_ne_lng']);}
   var path = 'https://s3-us-west-2.amazonaws.com/hoppler/';
-  if ( sw_lat ){
-    towers.push(tower['id']);
-    tower_count -= 1;
-    $.each(data,function(i,img){
-      queued_images.push(img);
-      new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);
-    });
-  }
+  $.each(data,function(i,img){
+    queued_images.push(img);
+    new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);
+  });
 }

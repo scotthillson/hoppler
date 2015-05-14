@@ -4,10 +4,13 @@ class TowersController < ApplicationController
   before_action :get_tower, only: [:show,:edit,:update,:destroy]
 
   def index
-    @towers = Tower.all
     respond_to do |format|
-      format.html{}
-      format.json{render json: @towers}
+      format.html do
+        @towers = Tower.all
+      end
+      format.json do
+        render json: Tower.where('sw_lat IS NOT NULL OR est_sw_lat IS NOT NULL')
+      end
     end
   end
 
