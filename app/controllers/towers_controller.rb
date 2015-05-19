@@ -37,6 +37,9 @@ class TowersController < ApplicationController
   end
 
   def edit
+    @tower.update(tower_params)
+    @tower.save
+    redirect_to towers_path
   end
 
   def update
