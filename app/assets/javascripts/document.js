@@ -9,7 +9,7 @@ var get_param = function(variable){
   }
 }
 var ready = function(){
-  if(location.pathname=='/'){
+  if(location.pathname=='/' || location.pathname.split('/')[1]=='locations'){
     draw_times();
     initialize();
     $('#avalanche').on('click','avalanche');

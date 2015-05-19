@@ -11,7 +11,7 @@ var manifest = [];
 var loaded_images;
 var queued_images;
 var opacity = 0.6;
-var increment = 500;
+var increment = 400;
 var initialize = function(){
   draw_progress();
   if(get_param('increment')){
@@ -19,6 +19,13 @@ var initialize = function(){
       increment = Number(get_param('increment'));
     }
   }
+  var location_name = location.pathname.split('/')[location.pathname.split('/').length-1];
+  if(location_name==""){
+    location_name = 'Oregon';
+  }
+  ajax({id:location_name},'GET','json','/location_point',draw_map,'');
+}
+var draw_map = function(data,objects){
   var width = document.documentElement.clientWidth;
   if ( width < 1000 ){
     var zoom = 5;
@@ -26,7 +33,7 @@ var initialize = function(){
     var zoom = 6;
   }
   var options = {
-    center:{lat: 45.710,lng: -122.959},
+    center:{lat: Number(data.lat),lng: Number(data.lng)},
     zoom:zoom,
     mapTypeId:google.maps.MapTypeId.TERRAIN
   };
@@ -42,7 +49,11 @@ var setup = function(){
   get_towers();
 }
 var get_towers = function(){
-  ajax('','GET','json','/towers',parse_towers,map);
+  var location_name = location.pathname.split('/')[location.pathname.split('/').length-1];
+  if(location_name==""){
+    location_name = 'Oregon';
+  }
+  ajax({id:location_name},'GET','json','/locations',parse_towers,map);
 }
 var manifest_success = function(data,objects){
   manifest = data;

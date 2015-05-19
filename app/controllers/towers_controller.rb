@@ -1,16 +1,13 @@
 class TowersController < ApplicationController
   
   before_action :tower_params, only: [:create,:update]
-  before_action :get_tower, only: [:show,:edit,:update,:destroy]
+  before_action :get_tower, only: [:show]#,:edit,:update,:destroy]
 
   def index
+    @towers = Tower.all
     respond_to do |format|
-      format.html do
-        @towers = Tower.all
-      end
-      format.json do
-        render json: Tower.where('sw_lat IS NOT NULL OR est_sw_lat IS NOT NULL')
-      end
+      format.html
+      format.json { render json: @towers }
     end
   end
 
@@ -23,21 +20,21 @@ class TowersController < ApplicationController
     end
   end
 
-  def new
-    @tower = Tower.new
-  end
+  #def new
+  #  @tower = Tower.new
+  #end
 
-  def create
-    @tower = Tower.new(tower_params)
-    if @tower.save
-      redirect_to towers_path
-    else
-      redirect_to :new
-    end
-  end
+  #def create
+  #  @tower = Tower.new(tower_params)
+  #  if @tower.save
+  #    redirect_to towers_path
+  #  else
+  #    redirect_to :new
+  #  end
+  #end
 
-  def edit
-  end
+  #def edit
+  #end
 
   def update
     @tower.update(tower_params)
