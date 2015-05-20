@@ -53,22 +53,22 @@ var get_towers = function(){
   if(location_name==""){
     location_name = 'Oregon';
   }
-  ajax({id:location_name},'GET','json','/locations',parse_towers,map);
+  ajax('','GET','json','/locations/'+location_name,parse_towers,'');
 }
 var manifest_success = function(data,objects){
   manifest = data;
 }
-var parse_towers = function(data,map){
+var parse_towers = function(data,objects){
   tower_count = data.length;
   $.each(data,function(i,tower){
     towers.push(tower['id']);
     images[tower['id']] = {};
-    gather_images(tower,map);
+    gather_images(tower);
   });
 }
 var gather_images = function(tower){
-  var ims = get_param('images');
-  ajax({images:ims},'GET','json','/towers/'+tower['id'],images_success,tower);
+  var images = get_param('images');
+  ajax({images:images},'GET','json','/towers/'+tower['id'],images_success,tower);
 }
 var images_success = function(data,tower){
   image_count = data.length;
