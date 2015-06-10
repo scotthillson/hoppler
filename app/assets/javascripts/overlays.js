@@ -15,7 +15,6 @@ var image_loader = function(img,div,nex){
   if (loaded_images.length == queued_images.length){
     if (loaded_images.length >= ( tower_count * image_count )){
       if(cycles<1){
-        //console.log(Object.keys(images[1]))
         progress_div.style.backgroundColor = 'black';
         cycle();
       }
