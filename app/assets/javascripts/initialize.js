@@ -87,8 +87,6 @@ var images_success = function(data,tower){
   var path = 'https://s3-us-west-2.amazonaws.com/hoppler/';
   $.each(data,function(i,img){
     queued_images.push(img);
-    var day = new Date(img.time);
-    progress_circle.animate(queued_images.length/expected_images,null);
     new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);
   });
 }
