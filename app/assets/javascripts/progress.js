@@ -21,8 +21,8 @@ var draw_times = function(){
   time_div = div;
 }
 var load_progress = function(){
-  var element = document.getElementById('load-progress');
-  progress_circle = new ProgressBar.Circle(element,{
+  loading_div = document.getElementById('load-progress');
+  progress_circle = new ProgressBar.Circle(loading_div,{
       color:'#089adb',
       strokeWidth:4,
       fill:'none'

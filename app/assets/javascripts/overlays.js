@@ -17,6 +17,7 @@ var image_loader = function(img,div,nex){
   if (loaded_images.length == queued_images.length){
     if (loaded_images.length >= expected_images){
       if(cycles<1){
+        loading_div.style.display = 'none';
         progress_div.style.backgroundColor = 'black';
         cycle();
       }

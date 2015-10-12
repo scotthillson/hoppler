@@ -9,6 +9,7 @@ var image_count;
 var expected_images;
 var progress_circle;
 var progress_div;
+var loading_div;
 var manifest = [];
 var loaded_images;
 var queued_images;
@@ -87,9 +88,7 @@ var images_success = function(data,tower){
   $.each(data,function(i,img){
     queued_images.push(img);
     var day = new Date(img.time);
-    progress_circle.animate(queued_images.length/expected_images,function(){
-        progress_circle.animate(100);
-    });
+    progress_circle.animate(queued_images.length/expected_images,null);
     new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);
   });
 }
