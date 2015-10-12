@@ -9,7 +9,7 @@ var times = function(){
   $('.time').empty();
   var platform = navigator.platform;
   if (platform=='iPhone'||platform=='android'){
-    $('.time').css({'top':'70px','left':'5px','font-size':'21px'});
+    $('.time').css({'top':'70px','left':'5px','font-size':'20px'});
   }
 }
 var showhide = function(tower,progress,one,two,t){
@@ -24,8 +24,9 @@ var showhide = function(tower,progress,one,two,t){
         }
         if(tower==1){
           progress_div.style.width = progress+'%';
-          var string = $(two).data('time');
-          $(time_div).html(string.substring(11,16));
+          var date = $(two).data('time');
+          date = new Date(date)
+          $(time_div).html((date.getMonth()+1)+'.'+date.getDate()+' '+date.getHours()+'.'+date.getMinutes());
         }
       }
   })(tower,progress,one,two),t);
@@ -65,7 +66,7 @@ var cycle = function(){
   }
   if(wait>0){
     if(false){
-      // use this block to refresh the imagery after several minutes
+      // use this to refresh the imagery after several minutes
       setTimeout(setup,wait);
     } else{
       setTimeout(cycle,wait);

@@ -12,6 +12,7 @@ var ready = function(){
   if(location.pathname=='/' || location.pathname.split('/')[1]=='locations'){
     draw_times();
     initialize();
+    load_progress();
     $('#avalanche').on('click','avalanche');
     $('.time-line').on('click',time_click);
     $('.opacity-up').on('click',opacity_up);

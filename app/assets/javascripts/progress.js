@@ -11,15 +11,20 @@ var draw_progress = function(){
 }
 var draw_times = function(){
   var div = document.createElement('div');
-  div.style.border = '1px solid black';
-  div.style.backgroundColor = 'white';
-  div.style.textAlign = 'center';
-  div.style.fontSize = '13px'
+  div.style.fontSize = '22px';
+  div.style.textShadow='-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,1px 1px 0 #fff';
   div.style.position = 'fixed';
-  div.style.height = '17px';
-  div.style.right = '100px';
-  div.style.width = '50px';
+  div.style.right = '20px';
+  div.style.minWidth = '130px';
   div.style.top = '14px';
   document.body.appendChild(div);
   time_div = div;
+}
+var load_progress = function(){
+  var element = document.getElementById('load-progress');
+  progress_circle = new ProgressBar.Circle(element,{
+      color:'#089adb',
+      strokeWidth:4,
+      fill:'none'
+  });
 }
