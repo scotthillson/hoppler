@@ -88,7 +88,7 @@ var images_success = function(data,tower){
     queued_images.push(img);
     var day = new Date(img.time);
     progress_circle.animate(queued_images.length/expected_images,function(){
-        progress_circle.animate(0);
+        progress_circle.animate(100);
     });
     new_nexrad_overlay(sw_lat,sw_lng,ne_lat,ne_lng,path,img,tower['id']);
   });
