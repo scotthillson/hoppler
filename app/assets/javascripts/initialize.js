@@ -62,6 +62,7 @@ var manifest_success = function(data,objects){
   manifest = data;
 }
 var parse_towers = function(data,objects){
+  progress_circle.animate(.1,null);
   tower_count = data.length;
   $.each(data,function(i,tower){
     towers.push(tower['id']);
