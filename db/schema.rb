@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513220043) do
+ActiveRecord::Schema.define(version: 20151014004603) do
 
   create_table "images", force: true do |t|
     t.integer  "tower_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20150513220043) do
     t.datetime "updated_at"
     t.string   "image"
   end
+
+  add_index "images", ["time"], name: "index_images_on_time"
 
   create_table "location_lookups", force: true do |t|
     t.integer  "rank"

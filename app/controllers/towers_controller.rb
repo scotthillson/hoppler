@@ -14,10 +14,7 @@ class TowersController < ApplicationController
   def show
     params[:images] ||= 20
     @images = @tower.images.order(:time).last(params[:images].to_i)
-    respond_to do |format|
-      format.html{}
-      format.json{render json: @images}
-    end
+    render json: @images
   end
 
   #def new
