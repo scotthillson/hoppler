@@ -14,7 +14,11 @@ var image_loader = function(img,div,nex){
   images[nex.tower_][nex.time_] = img;
   div.appendChild(img);
   loaded_images.push(img);
-  progress_circle.animate(queued_images.length/expected_images,null);
+  var percent = queued_images.length/expected_images;
+  if(percent>.79){
+    percent = 1;
+  }
+  progress_circle.animate(percent,{duration:2000});
   if (loaded_images.length == queued_images.length){
     if (loaded_images.length >= expected_images){
       if(cycles<1){
