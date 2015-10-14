@@ -13,6 +13,6 @@ set :environment, 'development'
 
 set :output, '/home/rails/weather/log/whenever.log'
 
-#every 5.minutes do
-  #runner "Tower.populate"
-#end
+every 5.minutes do
+  runner "Tower.populate"
+end
