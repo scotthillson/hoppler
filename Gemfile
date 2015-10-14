@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'pg'
 # for opening files and nokogiri and such
 require 'open-uri'
 # nokogiri
