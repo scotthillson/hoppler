@@ -3,7 +3,7 @@ class Migrate < ActiveRecord::Base
   self.table_name = :images
   def self.migrate
     self.table_name = :images
-    Image.all.each do |i|
+    Image.find_each do |i|
       m = Migrate.create(i.attributes)
     end
     self.table_name = :towers
