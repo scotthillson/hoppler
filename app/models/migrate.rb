@@ -1,5 +1,6 @@
 class Migrate < ActiveRecord::Base
   establish_connection :production
+  self.table_name = :images
   def self.migrate
     self.table_name = :images
     Image.all.each do |i|
