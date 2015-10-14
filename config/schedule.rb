@@ -11,7 +11,7 @@
 
 set :environment, 'development'
 
-set :output, '/home/rails/weather/log/whenever.log'
+set :output, '/home/rails/hoppler/log/whenever.log'
 
 every 5.minutes do
   runner "Tower.populate"
