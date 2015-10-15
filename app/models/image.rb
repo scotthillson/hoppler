@@ -7,7 +7,7 @@ class Image < ActiveRecord::Base
     if !tower || !image
       return success
     end
-    if where(image: image).count < 1
+    if where(image:image).count < 1
       i = new
       i.tower_id = tower.id
       i.image = image

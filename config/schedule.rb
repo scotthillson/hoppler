@@ -13,6 +13,6 @@ set :environment, 'development'
 
 set :output, '/home/rails/hoppler/log/whenever.log'
 
-every 5.minutes do
+every 10.minutes do
   runner "Tower.populate"
 end
