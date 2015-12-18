@@ -11,14 +11,15 @@ class Tower < ActiveRecord::Base
 
   def self.populate
     adds = 0
-    all.each do |t|
-      adds += t.scan
+    all.each do |tower|
+      adds += tower.scan
     end
     adds
   end
 
   def scan
     self.estimator
+    images = self.images.pluck(:image).last(100)
     adds = 0
     page = "#{PATH}#{self.rid}"
     open = open_page(page)
@@ -27,7 +28,9 @@ class Tower < ActiveRecord::Base
         if r.search('td')[1].text.include? 'gif'
           image = r.search('td')[1].text
           time = r.search('td')[2].text
-          adds += Image.store(self,image,time,page)
+          if !images.include? image
+            adds += Image.store(self,image,time,page)
+          end
         end
       end
     end

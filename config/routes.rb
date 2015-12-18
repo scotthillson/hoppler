@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   resources :towers
 
   resources :images
-  get 'manifest', to: 'images#manifest'
 
 end

@@ -10,7 +10,6 @@ var expected_images;
 var progress_circle;
 var progress_div;
 var loading_div;
-var manifest = [];
 var loaded_images;
 var queued_images;
 var opacity = 0.6;
@@ -57,9 +56,6 @@ var get_towers = function(){
     location_name = 'Oregon';
   }
   ajax('','GET','json','/locations/'+location_name,parse_towers,'');
-}
-var manifest_success = function(data,objects){
-  manifest = data;
 }
 var parse_towers = function(data,objects){
   progress_circle.animate(.1,null);

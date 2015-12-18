@@ -75,28 +75,4 @@ class Image < ActiveRecord::Base
     (img.time - comp).abs
   end
 
-  def self.manifest
-    tower_hash = make_tower_hash
-    img_hash = make_img_hash tower_hash
-    time_hash = make_time_hash tower_hash
-    time_hash.keys.each do |tk|
-      tower_hash.keys[1..-1].each do |t|
-        tower_hash[t].each do |i|
-          comp = time_hash[tk][1].time
-          d = dif(i,comp)
-          if d < MAX_DELTA
-            if !time_hash[tk][t]
-              img_hash[tk][t] = i.image
-              time_hash[tk][t] = i.time
-            elsif d < dif(time_hash[tk][t],comp)
-              img_hash[tk][t] = i.image
-              time_hash[tk][t] = i.time
-            end
-          end
-        end
-      end
-    end
-    img_hash
-  end
-
 end

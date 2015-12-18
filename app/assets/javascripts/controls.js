@@ -31,7 +31,6 @@ var showhide = function(tower,progress,one,two,t){
       }
   })(tower,progress,one,two),t);
 }
-var manifest_timer = function(){}
 var each_tower = function(tower){
   var imgs = images[tower];
   var keys = Object.keys(imgs).length;
@@ -54,14 +53,10 @@ var each_tower = function(tower){
 var cycle = function(){
   cycles += 1;
   var wait = 0;
-  if(manifest.length){
-    manifest_timer();
-  } else { //go into limp mode
-    for ( k in towers ){
-      w = each_tower(towers[k]);
-      if(w > wait){
-        wait = w;
-      }
+  for ( k in towers ){
+    w = each_tower(towers[k]);
+    if(w > wait){
+      wait = w;
     }
   }
   if(wait>0){
