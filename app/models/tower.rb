@@ -19,7 +19,7 @@ class Tower < ActiveRecord::Base
 
   def scan
     self.estimator
-    images = self.images.pluck(:image).last(100)
+    images = self.images.pluck(:image)
     adds = 0
     page = "#{PATH}#{self.rid}"
     open = open_page(page)
