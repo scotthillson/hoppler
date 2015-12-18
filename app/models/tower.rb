@@ -27,7 +27,7 @@ class Tower < ActiveRecord::Base
       if r.search('td')[1] && r.search('td')[2]
         if r.search('td')[1].text.include? 'gif'
           image = r.search('td')[1].text
-          time = r.search('td')[2].text
+          time = Time.parse(r.search('td')[2].text)+Time.now.utc_offset()
           if !images.include? image
             adds += Image.store(self,image,time,page)
           end
