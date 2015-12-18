@@ -12,7 +12,7 @@ class TowersController < ApplicationController
 
   def show
     params[:images] ||= 20
-    images = Image.where(tower_id:params[:id]).last(1000).order(:time).last(params[:images].to_i)
+    images = Image.where(tower_id:params[:id]).last(1000).sort_by(:time).last(params[:images].to_i)
     render json: images
   end
 
