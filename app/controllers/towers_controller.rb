@@ -12,7 +12,7 @@ class TowersController < ApplicationController
 
   def show
     params[:images] ||= 20
-    images = Image.where(tower_id:params[:id]).order(:time).last(params[:images].to_i)
+    images = Image.where(tower_id:params[:id]).last(1000).order(:time).last(params[:images].to_i)
     render json: images
   end
 
@@ -27,9 +27,6 @@ class TowersController < ApplicationController
   #  else
   #    redirect_to :new
   #  end
-  #end
-
-  #def edit
   #end
 
   def update
