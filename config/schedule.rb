@@ -4,6 +4,8 @@
 
 set :environment, 'development'
 
+set :output, '/home/rails/weather/log/whenever.log'
+
 every 10.minutes do
   runner "Tower.populate"
 end
