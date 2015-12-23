@@ -29,11 +29,7 @@ var initialize = function(){
 }
 var draw_map = function(data,objects){
   var width = document.documentElement.clientWidth;
-  if ( width < 1000 ){
-    var zoom = 5;
-  } else {
-    var zoom = 7;
-  }
+  var zoom = 7;
   var options = {
     center:{lat: Number(data.lat),lng: Number(data.lng)},
     zoom:zoom,
