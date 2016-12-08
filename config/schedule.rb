@@ -1,8 +1,6 @@
-# Use this file to easily define all of your cron jobs
+# Use this file to easily define cron jobs
 
-# Learn more: http://github.com/javan/whenever
-
-set :environment, 'development'
+set :environment, 'production'
 
 set :output, '/home/rails/weather/log/whenever.log'
 
