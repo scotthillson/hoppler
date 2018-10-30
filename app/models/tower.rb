@@ -3,7 +3,7 @@ class Tower < ActiveRecord::Base
   has_many :images
   belongs_to :location
 
-  PATH = 'http://radar.weather.gov/ridge/RadarImg/N0R/'
+  PATH = 'https://radar.weather.gov/ridge/RadarImg/N0R/'
 
   def open_page page
     Nokogiri::HTML(open(page))
