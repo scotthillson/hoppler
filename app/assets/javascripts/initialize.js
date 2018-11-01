@@ -65,12 +65,13 @@ var parse_towers = function (data, objects) {
     towers.push(tower.id);
     images[tower.id] = {};
     setTimeout(function(){
-      gather_images(tower);
-    }, (i*1000));
+      gather_images(tower)
+    }, (i*100));
   });
 };
 
 var gather_images = function (tower) {
+  console.log(tower.id);
   const images = get_param('images');
   ajax({ images }, 'GET', 'json', `/towers/${tower.id}`, images_success, tower);
 };
