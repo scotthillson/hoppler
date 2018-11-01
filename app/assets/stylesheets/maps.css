@@ -6,8 +6,9 @@ body {
 }
 #map-canvas {
   height:100%;
-  width:101%;
-  left:-7px;
+  width:102%;
+  left:-8px;
+  top:-8px
 }
 #load-progress {
   left:40%;
