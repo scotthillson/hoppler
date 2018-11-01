@@ -1,5 +1,5 @@
 class TowersController < ApplicationController
-  
+
   before_action :tower_params, only: [:create,:update]
 
   def index
@@ -11,23 +11,9 @@ class TowersController < ApplicationController
   end
 
   def show
-    params[:images] ||= 20
-    images = Image.where(tower_id:params[:id]).last(1000).sort_by(&:time).last(params[:images].to_i)
+    images = Image.where(tower_id:params[:id]).last(100).sort_by(&:time)
     render json: images
   end
-
-  #def new
-  #  @tower = Tower.new
-  #end
-
-  #def create
-  #  @tower = Tower.new(tower_params)
-  #  if @tower.save
-  #    redirect_to towers_path
-  #  else
-  #    redirect_to :new
-  #  end
-  #end
 
   def update
     @tower = Tower.find params[:id]
