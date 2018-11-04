@@ -66,7 +66,7 @@ var parse_towers = function (data, objects) {
     images[tower.id] = {};
     setTimeout(function(){
       gather_images(tower)
-    }, (i*100));
+    }, (i*500));
   });
 };
 
@@ -77,6 +77,7 @@ var gather_images = function (tower) {
 };
 
 var images_success = function (data, tower) {
+  console.log(tower.id);
   image_count = data.length;
   expected_images = tower_count * image_count;
   let sw_lat = Number(tower.sw_lat);
