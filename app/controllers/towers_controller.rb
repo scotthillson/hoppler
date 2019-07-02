@@ -1,6 +1,5 @@
 class TowersController < ApplicationController
-
-  before_action :tower_params, only: [:create,:update]
+  before_action :tower_params, only: [:create, :update]
 
   def index
     @towers = Tower.all
@@ -11,7 +10,9 @@ class TowersController < ApplicationController
   end
 
   def show
-    images = Image.where(tower_id:params[:id]).last(100).sort_by(&:time)
+    images = params[:images]
+    images ||= 50
+    images = Image.where(tower_id: params[:id]).last(images).sort_by(&:time)
     render json: images
   end
 
@@ -22,13 +23,11 @@ class TowersController < ApplicationController
     redirect_to towers_path
   end
 
-  def destroy
-  end
-
   private
 
   def tower_params
-    params.require(:tower).permit(:rid,:city,:state,:sw_lat,:sw_lng,:ne_lat,:ne_lng,:center_lat,:center_lng,:location_id)
+    params.require(:tower).permit(
+      :rid, :city, :state, :sw_lat, :sw_lng, :ne_lat, :ne_lng, :center_lat, :center_lng, :location_id
+    )
   end
-
 end
